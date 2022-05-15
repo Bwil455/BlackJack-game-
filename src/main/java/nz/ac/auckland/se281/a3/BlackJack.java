@@ -18,9 +18,6 @@ public class BlackJack {
 	private List<Player> players;
 	private Dealer dealer;
 	private Deck deck;
-	private int wins = 0;
-	private int loses = 0;
-	private int netWins = 0;
 
 	public BlackJack(Deck deck) {
 		this.deck = deck;
@@ -88,7 +85,7 @@ public class BlackJack {
 		// Strategy level form user is generated first
 		String botStrategyString = getBotStrategy();
 
-		// The srategy chosen is then used to create a new instance of that risk
+		// The strategy chosen is then used to create a new instance of that risk
 		// level(low, high or random)
 		BotRiskLevel riskStrat = BotRiskFactory.createRiskAndBet(botStrategyString);
 
@@ -99,6 +96,7 @@ public class BlackJack {
 
 		players.add(bot1);
 		players.add(bot2);
+
 	}
 
 	/**
@@ -107,7 +105,7 @@ public class BlackJack {
 	 */
 	protected void initDealer() {
 		// set the initial strategy using the Strategy pattern
-		dealer = new Dealer("Dealer");
+		dealer = new Dealer("Dealer", players);
 	}
 
 	/**
