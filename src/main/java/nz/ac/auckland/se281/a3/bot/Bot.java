@@ -8,7 +8,7 @@ import nz.ac.auckland.se281.a3.Player;
  */
 public class Bot extends Player {
 
-	BotRiskLevel risk;
+	protected BotRiskLevel risk;
 
 	/**
 	 * Bot constructor the creates instances of the bot class

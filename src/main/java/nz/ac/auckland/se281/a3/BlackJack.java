@@ -18,6 +18,9 @@ public class BlackJack {
 	private List<Player> players;
 	private Dealer dealer;
 	private Deck deck;
+	private int wins = 0;
+	private int loses = 0;
+	private int netWins = 0;
 
 	public BlackJack(Deck deck) {
 		this.deck = deck;
