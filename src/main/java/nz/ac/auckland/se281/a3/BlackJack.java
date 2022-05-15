@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nz.ac.auckland.se281.a3.bot.Bot;
+import nz.ac.auckland.se281.a3.bot.BotRiskFactory;
+import nz.ac.auckland.se281.a3.bot.BotRiskLevel;
 import nz.ac.auckland.se281.a3.dealer.Dealer;
 
 /**
@@ -79,10 +81,19 @@ public class BlackJack {
 	 * Task1
 	 */
 	protected void initBots() {
-		Bot bot1 = new Bot("Bot1");
-		Bot bot2 = new Bot("Bot2");
-		// String botStrategyString = getBotStrategy(); // UNCOMMENT THIS
-		// create and set Bots strategy here
+
+		// Strategy level form user is generated first
+		String botStrategyString = getBotStrategy();
+
+		// The srategy chosen is then used to create a new instance of that risk
+		// level(low, high or random)
+		BotRiskLevel riskStrat = BotRiskFactory.createRiskAndBet(botStrategyString);
+
+		// Initialise the bots with their respective names, and then use the new
+		// instance BotRiskLevel, to determine the action and bet behaviours
+		Bot bot1 = new Bot("Bot1", riskStrat);
+		Bot bot2 = new Bot("Bot2", riskStrat);
+
 		players.add(bot1);
 		players.add(bot2);
 	}
