@@ -15,7 +15,7 @@ import nz.ac.auckland.se281.a3.Player;
  */
 public class Dealer extends Participant {
 
-	protected List<Player> players;
+	private List<Player> players;
 
 	public Dealer(String name, List<Player> players) {
 		super(name);

@@ -19,6 +19,7 @@ public class LowRisk implements BotRiskLevel {
 	 * hold at values further from 21, and will only hit if their score is less than
 	 * 17
 	 * 
+	 * @param hand passes in the current hand of the bot
 	 * @return the action that is to be taken by the bot
 	 */
 	public Action setActionRisk(Hand hand) {
@@ -37,7 +38,7 @@ public class LowRisk implements BotRiskLevel {
 	 * Sets the bet number that the bots will select. Uses a random number between
 	 * 10 and 50 and returns that number to be used
 	 * 
-	 * @return the bet amount that is to be used by the bot
+	 * @return betNum the bet amount that is to be used by the bot
 	 */
 	public int setBetRisk() {
 

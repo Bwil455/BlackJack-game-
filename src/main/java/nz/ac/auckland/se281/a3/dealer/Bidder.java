@@ -6,6 +6,14 @@ import nz.ac.auckland.se281.a3.Hand;
 import nz.ac.auckland.se281.a3.Participant.Action;
 import nz.ac.auckland.se281.a3.Player;
 
+/**
+ * sets the behaviours of the dealer if if were to adopt the Highest Bidder
+ * strategy, in which the dealer aims to only beat the player with the highest
+ * bid made
+ * 
+ * @author Bradley
+ *
+ */
 public class Bidder implements DealerBehaviour {
 
 	public Bidder() {

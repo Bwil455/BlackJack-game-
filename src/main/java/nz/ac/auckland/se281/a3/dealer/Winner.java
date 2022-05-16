@@ -6,6 +6,14 @@ import nz.ac.auckland.se281.a3.Hand;
 import nz.ac.auckland.se281.a3.Participant.Action;
 import nz.ac.auckland.se281.a3.Player;
 
+/**
+ * sets the behaviours of the dealer if if were to adopt the Highest Winner
+ * strategy, in which the dealer aims to only beat the player with the highest
+ * net wins
+ * 
+ * @author Bradley
+ *
+ */
 public class Winner implements DealerBehaviour {
 
 	public Winner() {
@@ -18,7 +26,7 @@ public class Winner implements DealerBehaviour {
 	 * strategy is to be used. confirms the cases in which a hit or a hold would be
 	 * used and then returns that action
 	 * 
-	 * @param hand    - hand of the dealer
+	 * @param hand    passes in the hand of the dealer
 	 * @param players a List of the current players
 	 * @return the action to be taken by the dealer
 	 */

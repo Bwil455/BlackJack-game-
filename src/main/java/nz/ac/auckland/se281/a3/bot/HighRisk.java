@@ -18,6 +18,7 @@ public class HighRisk implements BotRiskLevel {
 	 * hit at values closer to 21, and will only hold if their score is larger than
 	 * 19
 	 * 
+	 * @param hand passes in the current hand of the bot
 	 * @return the action that is to be taken by the bot
 	 */
 	@Override
