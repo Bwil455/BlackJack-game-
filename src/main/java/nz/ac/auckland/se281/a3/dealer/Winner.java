@@ -12,15 +12,28 @@ public class Winner implements DealerBehaviour {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * 
+	 * decided on the action to be taken (Hit or Hold) if the highest winner
+	 * strategy is to be used. confirms the cases in which a hit or a hold would be
+	 * used and then returns that action
+	 * 
+	 * @param hand    - hand of the dealer
+	 * @param players a List of the current players
+	 * @return the action to be taken by the dealer
+	 */
+
 	@Override
 	public Action decideDealerAction(Hand hand, List<Player> players) {
 
+		// gets the net wins of the first player and makes this the net wins/target
+		// player
 		Player currentTarget = players.get(0);
-
 		int mostWins = currentTarget.getNetWins();
 
-		// Assess which player has the highest number of net wins and so becomes the
-		// dealers target
+		// for loop compares each players net wins, updates the largest net wins/target
+		// player if a
+		// larger net wins is found
 		for (int i = 1; i < players.size(); i++) {
 			Player nextTarget = players.get(i);
 			int nextMostWins = nextTarget.getNetWins();
@@ -31,13 +44,17 @@ public class Winner implements DealerBehaviour {
 			}
 		}
 
+		// decided in which cases the dealer should hit or hold depending on the target
+		// players hand and returns that action
 		if (currentTarget.getHand().isBlackJack() && hand.getScore() < 17) {
 			return Action.HIT;
 		} else if (currentTarget.getHand().isBlackJack() && hand.getScore() > 17) {
 			return Action.HOLD;
-		} else if (currentTarget.getHand().getScore() > hand.getScore()) {
+		} else if (currentTarget.getHand().getScore() > hand.getScore() && !currentTarget.getHand().isBust()) {
 			return Action.HIT;
-		} else if (currentTarget.getHand().getScore() < hand.getScore()) {
+		} else if (currentTarget.getHand().getScore() <= hand.getScore()) {
+			return Action.HOLD;
+		} else if (currentTarget.getHand().isBust()) {
 			return Action.HOLD;
 		}
 

@@ -77,8 +77,9 @@ public class BlackJack {
 	}
 
 	/**
-	 * TODO This method initializes the Bots, you should change this method for
-	 * Task1
+	 * Gets the strategy desired by the user through an input, then uses that
+	 * strategy to create the bots according to that strategy. The bots will then
+	 * make decisions based on the risk level that was decided by the user
 	 */
 	protected void initBots() {
 
@@ -100,19 +101,54 @@ public class BlackJack {
 	}
 
 	/**
-	 * TODO This method initializes the Dealer, you should change this method for
-	 * Task2
+	 * Creates a new instance of the dealer to be used in the BlackJack game
 	 */
 	protected void initDealer() {
 		// set the initial strategy using the Strategy pattern
 		dealer = new Dealer("Dealer", players);
+
 	}
 
 	/**
-	 * TODO This method prints and updates the results (wins and losses) you should
-	 * change this method for Task 2 and Task 3
+	 * Determines how many players won in that particular round, and adjusts each
+	 * players win, lose and net win stats
+	 * 
+	 * @return returns void as no values are needed, it is used to update variables
+	 *         of the players
+	 */
+	protected void whoWonRound() {
+
+		// for loop carries out the logic of checking whether each player has won, if
+		// won it updates their win variable
+		for (int i = 0; i < players.size(); i++) {
+
+			if (players.get(i).getHand().isBlackJack() && !dealer.getHand().isBlackJack()) {
+				players.get(i).setWins(1);
+			} else if (players.get(i).getHand().getScore() > dealer.getHand().getScore()
+					&& !players.get(i).getHand().isBust()) {
+				players.get(i).setWins(1);
+			} else if (dealer.getHand().isBust() && !players.get(i).getHand().isBust()) {
+				players.get(i).setWins(1);
+			} else {
+				players.get(i).setLoses(1); // if none of the previous situation are triggered, the dealer has won,
+											// therefore adjusts players loses variable
+			}
+		}
+
+	}
+
+	/**
+	 * updates the wins and loses of each of the players. Then prints out updates
+	 * after every rounds informing the user as to how many chips each player has
+	 * lost
+	 * 
+	 * @param round the number of the round that is being played
 	 */
 	protected void printAndUpdateResults(int round) {
+
+		// whoWonRound simply checks how many players have won in a round, how many have
+		// lost and adjusts their wins and loses variables appropriately
+		whoWonRound();
 
 	}
 
