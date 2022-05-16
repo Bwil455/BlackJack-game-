@@ -22,12 +22,28 @@ public class Bidder implements DealerBehaviour {
 	public Action decideDealerAction(Hand hand, List<Player> players) {
 
 		Player currentTarget = players.get(0);
-		int currentTargetBid = hand.getBet();
+		int currentTargetBid = players.get(0).getHand().getBet();
 
 		for (int i = 1; i < players.size(); i++) {
 
 			Player nextTarget = players.get(i);
+			int nextTargetBid = players.get(i).getHand().getBet();
 
+			if (nextTargetBid > currentTargetBid) {
+				currentTarget = nextTarget;
+
+			}
+
+		}
+
+		if (currentTarget.getHand().isBlackJack() && hand.getScore() < 17) {
+			return Action.HIT;
+		} else if (currentTarget.getHand().isBlackJack() && hand.getScore() > 17) {
+			return Action.HOLD;
+		} else if (currentTarget.getHand().getScore() > hand.getScore()) {
+			return Action.HIT;
+		} else if (currentTarget.getHand().getScore() < hand.getScore()) {
+			return Action.HOLD;
 		}
 
 		return null;

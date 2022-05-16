@@ -31,9 +31,13 @@ public class Winner implements DealerBehaviour {
 			}
 		}
 
-		if (hand.isBlackJack() && hand.getScore() < 17) {
+		if (currentTarget.getHand().isBlackJack() && hand.getScore() < 17) {
 			return Action.HIT;
-		} else if (hand.isBlackJack() && hand.getScore() > 17) {
+		} else if (currentTarget.getHand().isBlackJack() && hand.getScore() > 17) {
+			return Action.HOLD;
+		} else if (currentTarget.getHand().getScore() > hand.getScore()) {
+			return Action.HIT;
+		} else if (currentTarget.getHand().getScore() < hand.getScore()) {
 			return Action.HOLD;
 		}
 
